@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Happy Birthday 💖</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      #dog-cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+      }
+
+      body {
+        height: 100vh;
+        cursor: none;
+
+        overflow: hidden;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        position: relative;
+
+        background: black;
+      }
+
+      /* BACKGROUND VIDEO */
+
+      .bg-video {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        z-index: -5;
+      }
+
+      /* DARK OVERLAY */
+
+      .overlay {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.18);
+
+        backdrop-filter: blur(4px);
+
+        z-index: -4;
+      }
+
+      /* FLOATING HEARTS */
+
+      .heart {
+        position: absolute;
+
+        bottom: -50px;
+
+        color: #ff7aa2;
+
+        animation: float linear infinite;
+
+        pointer-events: none;
+
+        user-select: none;
+
+        z-index: 1;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+
+          opacity: 0;
+        }
+
+        20% {
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(-120vh) rotate(360deg);
+
+          opacity: 0;
+        }
+      }
+
+      /* FLOATING PHOTOS */
+
+      .floating-photo {
+        position: absolute;
+
+        width: 180px;
+        height: 220px;
+
+        border-radius: 25px;
+
+        overflow: hidden;
+
+        z-index: 2;
+
+        animation-duration: 12s;
+
+        animation-iteration-count: infinite;
+
+        animation-timing-function: linear;
+
+        border: 3px solid rgba(255, 255, 255, 0.4);
+
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.3),
+          0 0 20px rgba(255, 192, 203, 0.5);
+      }
+
+      .floating-photo img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+      }
+
+      .photo1 {
+        top: 5%;
+        left: 5%;
+        animation-name: zigzag1;
+      }
+
+      .photo2 {
+        top: 55%;
+        left: 15%;
+        animation-name: zigzag2;
+      }
+
+      .photo3 {
+        top: 10%;
+        right: 10%;
+        animation-name: zigzag3;
+      }
+
+      .photo4 {
+        bottom: 10%;
+        right: 15%;
+        animation-name: zigzag4;
+      }
+
+      /* ZIGZAG ANIMATIONS */
+
+      @keyframes zigzag1 {
+        0% {
+          transform: translate(0, 0) rotate(-5deg);
+        }
+
+        25% {
+          transform: translate(60px, -40px) rotate(5deg);
+        }
+
+        50% {
+          transform: translate(-50px, 30px) rotate(-4deg);
+        }
+
+        75% {
+          transform: translate(40px, 70px) rotate(6deg);
+        }
+
+        100% {
+          transform: translate(-30px, -50px) rotate(-5deg);
+        }
+      }
+
+      @keyframes zigzag2 {
+        0% {
+          transform: translate(0, 0) rotate(5deg);
+        }
+
+        25% {
+          transform: translate(-70px, 40px) rotate(-5deg);
+        }
+
+        50% {
+          transform: translate(60px, -50px) rotate(5deg);
+        }
+
+        75% {
+          transform: translate(-40px, 70px) rotate(-6deg);
+        }
+
+        100% {
+          transform: translate(40px, -40px) rotate(4deg);
+        }
+      }
+
+      @keyframes zigzag3 {
+        0% {
+          transform: translate(0, 0);
+        }
+
+        25% {
+          transform: translate(-60px, 50px);
+        }
+
+        50% {
+          transform: translate(70px, -40px);
+        }
+
+        75% {
+          transform: translate(-40px, 70px);
+        }
+
+        100% {
+          transform: translate(30px, -50px);
+        }
+      }
+
+      @keyframes zigzag4 {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+
+        25% {
+          transform: translate(70px, -50px) rotate(7deg);
+        }
+
+        50% {
+          transform: translate(-60px, 40px) rotate(-7deg);
+        }
+
+        75% {
+          transform: translate(50px, 80px) rotate(5deg);
+        }
+
+        100% {
+          transform: translate(-30px, -40px) rotate(-5deg);
+        }
+      }
+
+      /* MAIN CARD */
+
+      .container {
+        width: 90%;
+        max-width: 700px;
+
+        padding: 50px 40px;
+
+        text-align: center;
+
+        border-radius: 30px;
+
+        background: rgba(0, 0, 0, 0.35);
+
+        backdrop-filter: blur(15px);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3);
+
+        animation: fadeIn 2s ease;
+
+        z-index: 5;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+
+          transform: translateY(40px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: translateY(0);
+        }
+      }
+
+      /* TEXT */
+
+      h1 {
+        font-size: 4rem;
+
+        color: #ffffff;
+
+        font-family: "Dancing Script", cursive;
+
+        margin-bottom: 15px;
+
+        text-shadow:
+          0 0 10px rgba(0, 0, 0, 0.9),
+          0 0 25px rgba(255, 105, 180, 0.9),
+          0 0 40px rgba(255, 255, 255, 0.8);
+      }
+
+      h2 {
+        font-size: 2rem;
+
+        color: #fff5fa;
+
+        margin-bottom: 20px;
+
+        font-weight: 600;
+
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      }
+
+      p {
+        font-size: 1.1rem;
+
+        color: #ffffff;
+
+        line-height: 1.9;
+
+        margin-bottom: 35px;
+
+        font-weight: 400;
+
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      }
+
+      /* BUTTON */
+
+      .btn {
+        display: inline-block;
+
+        padding: 15px 35px;
+
+        border-radius: 40px;
+
+        background: linear-gradient(to right, #ff8fab, #ffc2d1);
+
+        color: white;
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        font-weight: 600;
+
+        transition: 0.4s;
+      }
+
+      .btn:hover {
+        transform: translateY(-5px) scale(1.05);
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 35px 25px;
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+
+        .floating-photo {
+          width: 110px;
+          height: 140px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- VIDEO -->
+
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="vd1.mp4" type="video/mp4" />
+    </video>
+
+    <!-- OVERLAY -->
+
+    <div class="overlay"></div>
+
+    <!-- FLOATING PHOTOS -->
+
+    <div class="floating-photo photo1">
+      <img src="cover1.jpg" />
+    </div>
+
+    <div class="floating-photo photo2">
+      <img src="cover2.jpg" />
+    </div>
+
+    <div class="floating-photo photo3">
+      <img src="cover3.jpg" />
+    </div>
+
+    <div class="floating-photo photo4">
+      <img src="cover4.jpg" />
+    </div>
+
+    <!-- MUSIC -->
+
+    <audio id="music" autoplay loop hidden>
+      <source src="song1.mp3" type="audio/mp3" />
+    </audio>
+
+    <!-- MAIN CONTENT -->
+    <div id="dog-cursor">
+      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
+    </div>
+
+    <div class="container">
+      <h1>Happy Birthday Janiyee💖</h1>
+
+      <h2>To My Malkinn 🫶</h2>
+
+      <p>
+        Happy Birthday Baccha 🎂💖, Love you so so sooo muchh 🫶🏻🥹. Ajj mere
+        liye bhut special din hai because ajj mera life kaa most lovely sbse
+        sundar aur meri precious ldki kaa birthday hai. Actually,you complete a
+        part of me in the most beautiful way ✨.
+
+        <br /><br />
+
+        Thank you for existing ✨
+      </p>
+
+      <a href="page2.html" class="btn" onclick="saveMusicTime()">
+        Something For U ✨
+      </a>
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+      /* MANY HEARTS */
+      const dog = document.getElementById("dog-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        dog.style.left = `${x - 25}px`;
+        dog.style.top = `${y - 25}px`;
+      });
+
+      for (let i = 0; i < 250; i++) {
+        let heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤";
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.fontSize = Math.random() * 45 + 10 + "px";
+
+        heart.style.animationDuration = Math.random() * 10 + 3 + "s";
+
+        heart.style.animationDelay = Math.random() * 15 + "s";
+
+        heart.style.opacity = Math.random();
+
+        document.body.appendChild(heart);
+      }
+
+      /* MUSIC */
+
+      const music = document.getElementById("music");
+
+      function playAudio() {
+        let promise = music.play();
+
+        if (promise !== undefined) {
+          promise.catch(() => {});
+        }
+      }
+
+      /* LOAD SAVED MUSIC TIME */
+
+      window.addEventListener("load", () => {
+        music.volume = 1;
+
+        const savedTime = localStorage.getItem("musicTime");
+
+        if (savedTime) {
+          music.currentTime = savedTime;
+        }
+
+        playAudio();
+      });
+
+      /* FORCE PLAY */
+
+      ["click", "touchstart", "mousemove", "scroll", "keydown"].forEach(
+        (event) => {
+          document.addEventListener(event, () => {
+            playAudio();
+          });
+        },
+      );
+
+      /* SAVE MUSIC TIME */
+
+      function saveMusicTime() {
+        localStorage.setItem("musicTime", music.currentTime);
+      }
+
+      /* CONTINUOUS SAVE */
+
+      setInterval(() => {
+        localStorage.setItem("musicTime", music.currentTime);
+      }, 1000);
+    </script>
+  </body>
+</html>

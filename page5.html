@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Open When You Miss Me 🤎</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+#dog-cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+      }
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+    cursor:none;
+    overflow-x:hidden;
+
+    background:#050203;
+
+    font-family:'Poppins',sans-serif;
+
+    color:white;
+
+    position:relative;
+
+    padding:100px 20px;
+}
+
+/* =========================
+   VIDEO BACKGROUND
+========================= */
+
+#bgVideo{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-3;
+}
+
+/* OVERLAY */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,0.72);
+
+    z-index:-2;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.star{
+
+    position:fixed;
+
+    background:white;
+
+    border-radius:50%;
+
+    opacity:.7;
+
+    animation:
+    twinkle 3s infinite alternate;
+
+    z-index:0;
+}
+
+@keyframes twinkle{
+
+    from{
+        opacity:.2;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    z-index:999;
+
+    padding:12px 24px;
+
+    border-radius:40px;
+
+    background:
+    rgba(90,16,34,0.92);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:1rem;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.35);
+}
+
+/* =========================
+   ENVELOPE SECTION
+========================= */
+
+.envelope-section{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.envelope{
+
+    font-size:8rem;
+
+    cursor:pointer;
+
+    animation:
+    floatEnvelope 3s ease-in-out infinite alternate;
+
+    transition:.4s ease;
+}
+
+.envelope:hover{
+
+    transform:
+    scale(1.08);
+}
+
+@keyframes floatEnvelope{
+
+    from{
+
+        transform:
+        translateY(0px);
+    }
+
+    to{
+
+        transform:
+        translateY(-15px);
+    }
+}
+
+.envelope-text{
+
+    margin-top:25px;
+
+    color:#f5d7df;
+
+    font-size:1.1rem;
+
+    letter-spacing:1px;
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+
+    max-width:850px;
+
+    margin:120px auto;
+
+    background:
+    rgba(255,245,235,0.82);
+
+    color:#2b120d;
+
+    padding:60px 45px;
+
+    border-radius:25px;
+
+    line-height:2.2;
+
+    font-size:1.15rem;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+    opacity:0;
+
+    transform:
+    translateY(100px);
+
+    transition:1.2s ease;
+
+    position:relative;
+
+    z-index:2;
+
+    overflow:hidden;
+}
+
+/* IMAGE INSIDE LETTER */
+
+.letter::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    url('back.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+
+    filter:none;
+
+    opacity:.45;
+
+    border-radius:25px;
+
+    z-index:-1;
+}
+
+.letter.show{
+
+    opacity:1;
+
+    transform:
+    translateY(0px);
+}
+
+.letter h1{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:4rem;
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    color:#4d1020;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,.3);
+}
+
+/* =========================
+   MEMORIES
+========================= */
+
+.memories{
+
+    margin-top:160px;
+
+    text-align:center;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.memories h2{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:4rem;
+
+    margin-bottom:80px;
+
+    color:#fff;
+}
+
+.memory{
+
+    margin:40px auto;
+
+    padding:22px 30px;
+
+    max-width:700px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(10px);
+
+    font-size:1.1rem;
+
+    color:#f7dce3;
+
+    opacity:0;
+
+    transform:
+    translateY(60px);
+
+    transition:1s ease;
+}
+
+.memory.show{
+
+    opacity:1;
+
+    transform:
+    translateY(0px);
+}
+
+/* =========================
+   FINAL END
+========================= */
+
+.final{
+
+    margin-top:220px;
+
+    text-align:center;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.final h1{
+
+    font-size:5rem;
+
+    font-family:'Great Vibes',cursive;
+
+    color:#fff;
+
+    text-shadow:
+    0 0 25px rgba(255,180,210,.4);
+
+    margin-bottom:20px;
+}
+
+.final p{
+
+    color:#f3d8df;
+
+    font-size:1.2rem;
+
+    line-height:2;
+}
+
+.end{
+
+    margin-top:140px;
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,0.5);
+
+    letter-spacing:5px;
+
+    font-size:1rem;
+
+    position:relative;
+
+    z-index:2;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.envelope{
+
+    font-size:6rem;
+}
+
+.letter{
+
+    padding:40px 25px;
+
+    font-size:1rem;
+}
+
+.letter h1{
+
+    font-size:3rem;
+}
+
+.memories h2{
+
+    font-size:3rem;
+}
+
+.final h1{
+
+    font-size:3.5rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+    <div id="dog-cursor">
+      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
+    </div>
+
+<!-- VIDEO -->
+
+<video autoplay muted loop playsinline id="bgVideo">
+
+<source src="vd2.mp4" type="video/mp4">
+
+</video>
+
+<div class="overlay"></div>
+
+<!-- BACK BUTTON -->
+
+<a href="page4.html"
+class="back-btn"
+onclick="saveMusicState()">
+
+← Back
+
+</a>
+
+<!-- ENVELOPE -->
+
+<section class="envelope-section">
+
+<div class="envelope"
+onclick="openLetter()">
+
+✉️
+
+</div>
+
+<div class="envelope-text">
+
+Open only when you really miss me.
+
+</div>
+
+</section>
+
+<!-- LETTER -->
+
+<div class="letter" id="letter">
+
+<h1>
+
+To You 🤎
+
+</h1>
+
+<p>
+
+Maybe we won't stay the same forever.
+
+Maybe life will pull us into different directions.
+
+Maybe one day these conversations,
+these late-night talks,
+these small moments,
+will become memories.
+
+But if that day ever comes,
+I hope whenever you remember me,
+you remember peace.
+
+Because you were one of the softest,
+most beautiful parts of my life.
+
+You made ordinary days feel lighter.
+
+You made silence feel comforting.
+
+You made me care in ways
+I never expected myself to.
+
+And honestly,
+a version of me will always belong to you.
+
+No matter what changes,
+I will always be grateful
+that I met you.
+
+</p>
+
+</div>
+
+<!-- MEMORIES -->
+
+<div class="memories">
+
+<h2>
+
+Things I'll Always Remember
+
+</h2>
+
+<div class="memory">
+your sleepy texts
+</div>
+
+<div class="memory">
+your random anger
+</div>
+
+<div class="memory">
+your pretty eyes
+</div>
+
+<div class="memory">
+your smell
+</div>
+
+<div class="memory">
+your childishness
+</div>
+
+<div class="memory">
+your comfort
+</div>
+
+<div class="memory">
+your laugh
+</div>
+
+<div class="memory">
+the way you cared
+</div>
+
+</div>
+
+<!-- FINAL -->
+
+<div class="final">
+
+<h1>
+
+Thank You For Existing 🤎
+
+</h1>
+
+<p>
+
+— Rishikesh
+
+</p>
+
+</div>
+
+<div class="end">
+
+THE END
+
+</div>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" preload="auto" loop hidden>
+
+<source src="song1.mp3" type="audio/mp3">
+
+</audio>
+
+<script>
+
+/* =========================
+   MUSIC CONTINUATION
+========================= */
+const dog = document.getElementById("dog-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        dog.style.left = `${x - 25}px`;
+        dog.style.top = `${y - 25}px`;
+      });
+
+const bgMusic =
+document.getElementById("bgMusic");
+
+window.addEventListener("load", async ()=>{
+
+    const savedTime =
+    localStorage.getItem("musicTime");
+
+    const wasPlaying =
+    localStorage.getItem("musicPlaying");
+
+    try{
+
+        if(savedTime){
+
+            bgMusic.currentTime =
+            parseFloat(savedTime);
+        }
+
+        if(wasPlaying !== "false"){
+
+            await bgMusic.play();
+        }
+
+    }catch(err){
+
+        console.log(err);
+    }
+
+});
+
+/* SAVE TIME */
+
+setInterval(()=>{
+
+    if(!bgMusic.paused){
+
+        localStorage.setItem(
+            "musicTime",
+            bgMusic.currentTime
+        );
+    }
+
+},200);
+
+/* SAVE STATE */
+
+bgMusic.addEventListener("play", ()=>{
+
+    localStorage.setItem(
+        "musicPlaying",
+        "true"
+    );
+});
+
+bgMusic.addEventListener("pause", ()=>{
+
+    localStorage.setItem(
+        "musicPlaying",
+        "false"
+    );
+});
+
+/* SAVE BEFORE PAGE CHANGE */
+
+function saveMusicState(){
+
+    localStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
+
+    localStorage.setItem(
+        "musicPlaying",
+        !bgMusic.paused
+    );
+}
+
+/* =========================
+   OPEN LETTER
+========================= */
+
+function openLetter(){
+
+    document
+    .getElementById("letter")
+    .classList.add("show");
+
+    document
+    .getElementById("letter")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+/* =========================
+   STARS
+========================= */
+
+for(let i=0;i<120;i++){
+
+    const star =
+    document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.width =
+    Math.random()*3 + "px";
+
+    star.style.height =
+    star.style.width;
+
+    star.style.left =
+    Math.random()*100 + "vw";
+
+    star.style.top =
+    Math.random()*100 + "vh";
+
+    star.style.animationDuration =
+    (Math.random()*4 + 2) + "s";
+
+    document.body.appendChild(star);
+}
+
+/* =========================
+   MEMORY ANIMATION
+========================= */
+
+const memories =
+document.querySelectorAll(".memory");
+
+const observer =
+new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+        }
+
+    });
+
+},{threshold:0.2});
+
+memories.forEach(memory=>{
+
+    observer.observe(memory);
+});
+
+</script>
+
+</body>
+</html>

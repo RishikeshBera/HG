@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Letter For You 🤎</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+#dog-cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+      }
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    overflow:hidden;
+    cursor: none;
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:'Cormorant Garamond', serif;
+
+    background:
+
+    radial-gradient(circle at top left,
+    rgba(255,180,200,0.10),
+    transparent 25%),
+
+    radial-gradient(circle at bottom right,
+    rgba(255,120,150,0.08),
+    transparent 25%),
+
+    radial-gradient(circle at center,
+    rgba(255,220,230,0.05),
+    transparent 40%),
+
+    linear-gradient(
+        135deg,
+        #1a0509,
+        #3b0d18,
+        #5c1023,
+        #2a0811,
+        #1a0509
+    );
+
+    position:relative;
+}
+
+/* =========================
+   FLOATING NAMES
+========================= */
+
+.names{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+.name{
+
+    position:absolute;
+
+    bottom:-120px;
+
+    color:rgba(255,230,240,0.55);
+
+    font-size:2rem;
+
+    font-family:'Great Vibes', cursive;
+
+    text-shadow:
+    0 0 12px rgba(255,180,210,0.55),
+    0 0 20px rgba(255,120,160,0.35);
+
+    animation:
+    randomFloat linear infinite;
+}
+
+.name:nth-child(odd){
+
+    animation-duration:10s;
+}
+
+.name:nth-child(even){
+
+    animation-duration:13s;
+}
+
+.name:nth-child(1){ left:5%; animation-delay:0s; }
+.name:nth-child(2){ left:15%; animation-delay:2s; }
+.name:nth-child(3){ left:30%; animation-delay:4s; }
+.name:nth-child(4){ left:45%; animation-delay:1s; }
+.name:nth-child(5){ left:60%; animation-delay:3s; }
+.name:nth-child(6){ left:75%; animation-delay:5s; }
+.name:nth-child(7){ left:85%; animation-delay:2s; }
+
+@keyframes randomFloat{
+
+    0%{
+
+        transform:
+        translateY(0px)
+        translateX(0px);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:.75;
+    }
+
+    50%{
+
+        transform:
+        translateY(-50vh)
+        translateX(40px);
+    }
+
+    100%{
+
+        transform:
+        translateY(-120vh)
+        translateX(-20px);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   GLOW
+========================= */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    z-index:-1;
+
+    animation:floatGlow 8s ease-in-out infinite alternate;
+}
+
+body::before{
+
+    top:-150px;
+    left:-100px;
+
+    background:
+    rgba(140,20,50,0.30);
+}
+
+body::after{
+
+    bottom:-150px;
+    right:-100px;
+
+    background:
+    rgba(180,40,70,0.22);
+}
+
+@keyframes floatGlow{
+
+    from{
+
+        transform:
+        translateY(0px)
+        scale(1);
+    }
+
+    to{
+
+        transform:
+        translateY(40px)
+        scale(1.08);
+    }
+}
+
+/* =========================
+   BOOK
+========================= */
+
+.book{
+
+    position:relative;
+
+    width:850px;
+
+    height:92vh;
+
+    overflow:hidden;
+
+    z-index:2;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        rgba(90,60,35,0.07) 1px,
+        transparent 1px
+    ),
+
+    #ead7b2;
+
+    background-size:
+    100% 34px;
+
+    padding:60px 70px 170px 70px;
+
+    border-top:14px solid #1a0d07;
+    border-right:18px solid #100705;
+    border-bottom:16px solid #0b0402;
+    border-left:12px solid #24120b;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.50);
+
+    opacity:0;
+
+    transform:
+    translateX(120px)
+    scale(.985);
+
+    transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+
+    pointer-events:none;
+
+    overflow-y:auto;
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:none;
+}
+
+.page::-webkit-scrollbar{
+
+    display:none;
+}
+
+.page.active{
+
+    opacity:1;
+
+    transform:
+    translateX(0px)
+    scale(1);
+
+    z-index:10;
+
+    pointer-events:auto;
+}
+
+/* BIG PAGE */
+
+.big-page{
+
+    min-height:160vh;
+
+    padding-bottom:350px;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.title{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+.title h1{
+
+    font-size:4.2rem;
+
+    color:#4b2d20;
+
+    font-family:'Great Vibes', cursive;
+}
+
+.page h2{
+
+    font-size:2.2rem;
+
+    margin-bottom:22px;
+
+    color:#4a2e22;
+
+    font-family:'Dancing Script', cursive;
+}
+
+.page p{
+
+    font-size:1.1rem;
+
+    line-height:2;
+
+    color:#5b4030;
+
+    margin-bottom:24px;
+}
+
+.signature{
+
+    text-align:right;
+
+    margin-top:50px;
+
+    font-size:2rem;
+
+    color:#5b4030;
+
+    font-family:'Dancing Script', cursive;
+}
+
+/* =========================
+   FINAL TITLE + BUTTON
+========================= */
+
+.final-title{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    position:relative;
+
+    z-index:999999;
+}
+
+/* =========================
+   HOME BUTTON
+========================= */
+
+.home-btn{
+
+    position:absolute;
+
+    top:18px;
+    left:18px;
+
+    z-index:999999;
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    background:
+    rgba(90,16,34,0.92);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:1rem;
+
+    font-family:'Poppins',sans-serif;
+
+    border:1px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   NEXT BUTTON
+========================= */
+
+.next-btn{
+
+    position:relative;
+
+    z-index:999999 !important;
+
+    pointer-events:auto;
+
+    padding:12px 28px;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+    to right,
+    #7a1632,
+    #b63c63
+    );
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:1rem;
+
+    font-family:'Poppins',sans-serif;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.25);
+
+    transition:.4s ease;
+}
+
+.next-btn:hover{
+
+    transform:
+    translateY(-3px)
+    scale(1.05);
+}
+
+/* =========================
+   CLICK ZONES
+========================= */
+
+.click-zone{
+
+    position:fixed;
+
+    top:0;
+
+    height:100vh;
+
+    z-index:1;
+
+    cursor:pointer;
+}
+
+.left-zone{
+
+    left:0;
+
+    width:45%;
+
+    top:80px;
+}
+
+.right-zone{
+
+    right:0;
+
+    width:55%;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:950px){
+
+.book{
+
+    width:96%;
+
+    height:94vh;
+}
+
+.page{
+
+    padding:38px 22px 140px 22px;
+}
+
+.big-page{
+
+    min-height:220vh;
+
+    padding-bottom:450px;
+}
+
+.title h1{
+    font-size:3rem;
+}
+
+.page h2{
+    font-size:1.8rem;
+}
+
+.page p{
+
+    font-size:.98rem;
+
+    line-height:1.9;
+}
+
+.left-zone{
+
+    top:70px;
+}
+
+.final-title{
+
+    flex-direction:column;
+}
+
+.next-btn{
+
+    padding:10px 22px;
+
+    font-size:.9rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+    <div id="dog-cursor">
+      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
+    </div>
+
+<!-- FLOATING NAMES -->
+
+<div class="names">
+
+<div class="name">Motii 🤎</div>
+<div class="name">Harshii ✨</div>
+<div class="name">Jaaniye 🌸</div>
+<div class="name">Bae 💌</div>
+<div class="name">Malkinn 👑</div>
+<div class="name">Baddie 💋</div>
+<div class="name">Baccha 🥺</div>
+
+</div>
+
+<!-- BOOK -->
+
+<div class="book">
+
+<!-- PAGE 1 -->
+
+<div class="page active">
+
+<a href="index.html"
+class="home-btn"
+onclick="saveMusicBeforeHome()">
+
+⌂ Home
+
+</a>
+
+<div class="title">
+<h1>A Letter For You</h1>
+</div>
+
+<h2>The Beginning 🤎</h2>
+
+<p>
+
+As I promised, ki har saal apne style se kuch banaa kar denge. Happiest Birthday Baccha 🎂. And before kuch bhi I want you to know "Why are we bestfriends" ,kyunki tu mereko shaatappp and chup rho bolti thii but whenever I went silent you were the first to notice. Believe me, tu sabse pyaari hai, sabseeeeeee zyaada pyaari. Bas terese darr bhi lagta hai sometimes ki ghussa hoke chali gayi toh.
+
+I don’t know and can’t even imagine ki agar tu nahi hoti toh kaun sunta meraa. I never felt like receiving care or love from anyone until you came into my life.
+
+Sometimes hota tha ki both of us are having our own big problems, but babe tu yaar meri baat sun leti thi apna mood side me rakh kar.
+
+Tereko lagta hai naa ki tu bahut harsh ho jaati hai during your bad mood. But tu ye kaise bhul jaati hai ki jaise hi thik hoti hai, tu sabse caring person ban jaati hai.
+
+Hm literally aaj bhi sochte hai bhai hm dono kahan se dost bane and the hb-hg (still I am confused regarding this concept) and kab best friend ban gaye.
+
+Hm ye bhi agree karenge ki in some corner I love you more than a friend, but haan believe me it’s not that bf-gf one.
+
+You know right ki we do have something that lets us know everything about each other.Even if agar mereko chance mile hm to biyaah krle terese.
+<p>
+If someone asks me someday what I miss about her, bhai hm pura wo package miss karte hai (exclusively eyes-thighs).[Page ke right me tap kr for next and left for backkk!!]
+</p>
+</p>
+<p>
+
+</p>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page">
+
+<div class="title">
+<h1>Things I Never Said</h1>
+</div>
+
+<h2>The Feelings</h2>
+
+<p>
+Seeing you start this new journey makes me emotion and proud at the same time. We shared so may memories,silly moments,late-night talk, and days that became special for me just because you were there.
+Now life is taking you toward something new.Maybe things will change, may be distance wil come.But one thing will never change - your place in my heart.
+
+Again Happy Birthday Jaaniye!!!!
+
+I know ki many things are going on in your small and clumsy head, and not all of them can be buried by my endless tries.
+
+But I know this one thing — if someone says “strong”, I hear your name.
+
+And please Malkinn, let me be the only man who loves to make you smile while you keep being a man-hater.
+
+I miss you when something really good happens in my life because you are the one I really want to share it with.
+
+I miss you when something is troubling me because you are the one who understands me even better than myself.
+
+I miss you when I laugh or overthink because you are the one who makes my laughter grow and my thoughts disappear.
+
+Tu mera wo space hai jahan hm dimaag se nahi, dil se baat karte hai.
+
+Mera pura letter waste ho jaayega if hm tere eyes ke baare me baat nahi kare.
+
+My girl, sach me yaar tera eyes mereko heal karta hai. Relax feel karte hai hm. Aisa lagta hai ki bas dekhte jaaye,aur dekhte reh bhi jaate hai.
+
+I see purity and a small kid who wants many things but doesn’t speak up.
+
+Aur bahut kuch hai but yk hmko explain karna nahi aata.
+
+Hmko pata nahi ki tu sabke saamne aisa childish behaviour karti hai kabhi kabhi yaa sirf selective log hai, but bhai tu bahut zyaada pyaari lagti hai mereko.
+
+</p>
+
+<p></p>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page big-page">
+
+<div class="title final-title">
+
+<h1>Happy Birthday 🤎</h1>
+
+<a href="page3.html"
+class="next-btn"
+onclick="saveMusicBeforeNext()">
+
+Next ✨
+
+</a>
+
+</div>
+
+<h2>A Unconditional Love</h2>
+
+<p>
+
+Happy Birthday Baddie Jii 🎀, you changed me from a guy to a man, or almost a man.
+
+I want you to know that I care about you in ways I never planned to, in ways I never prepared my heart for.
+
+I notice the tiniest things about you — the way you speak so I can understand your mood, the way you feel, the way you exist, the way you make me feel important, the way you helped me get out of my thoughts — and every single thing matters to me.
+
+Tu mereko safe feel kraati hai, unjudged feel krte hai jb tere saath rehte hai. You understand without many words.
+
+People say they don't know how to say things, but I know how to say this — that you are the best soul I have known and I want this search to stop here.
+
+I am really sorry baee for not always being there to celebrate your birthday the way you deserve.
+
+You deserve everything beautiful.
+
+I want you to run to me when you feel no one understands you.
+
+I know that you are better at hiding things and pretending that everything is going good, but baccha I notice that thing.
+
+Hm promise krre koi logical reasoning nhi denge, bas tere saaath rhenge, sunenge everything.
+
+I just want to stay beside you, at least mere liye.
+
+</p>
+
+<div class="signature">
+— Forever Yours
+</div>
+
+</div>
+
+</div>
+
+<!-- CLICK ZONES -->
+
+<div class="click-zone left-zone"></div>
+<div class="click-zone right-zone"></div>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" preload="auto" loop hidden>
+
+<source src="song1.mp3" type="audio/mp3">
+
+</audio>
+
+<script>
+
+const pages = document.querySelectorAll(".page");
+
+const leftZone = document.querySelector(".left-zone");
+
+const rightZone = document.querySelector(".right-zone");
+
+const bgMusic =
+document.getElementById("bgMusic");
+const dog = document.getElementById("dog-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        dog.style.left = `${x - 25}px`;
+        dog.style.top = `${y - 25}px`;
+      });
+
+/* =========================
+   OPEN LAST PAGE
+========================= */
+
+let current = 0;
+
+if(localStorage.getItem("openLastPage") === "true"){
+
+    current = 2;
+
+    localStorage.removeItem("openLastPage");
+}
+
+/* =========================
+   SHOW PAGE
+========================= */
+
+function showPage(index){
+
+    pages.forEach(page=>{
+
+        page.classList.remove("active");
+    });
+
+    pages[index].classList.add("active");
+}
+
+showPage(current);
+
+/* =========================
+   PERFECT MUSIC CONTINUATION
+========================= */
+
+window.addEventListener("load", async ()=>{
+
+    const savedTime =
+    localStorage.getItem("musicTime");
+
+    const wasPlaying =
+    localStorage.getItem("musicPlaying");
+
+    try{
+
+        if(savedTime){
+
+            bgMusic.currentTime =
+            parseFloat(savedTime);
+        }
+
+        if(wasPlaying !== "false"){
+
+            await bgMusic.play();
+        }
+
+    }catch(err){
+
+        console.log(err);
+    }
+
+});
+
+/* KEEP MUSIC ACTIVE */
+
+["click","touchstart","keydown"]
+.forEach(event=>{
+
+    document.addEventListener(event, ()=>{
+
+        if(bgMusic.paused){
+
+            bgMusic.play().catch(()=>{});
+        }
+
+    });
+
+});
+
+/* SAVE MUSIC TIME */
+
+setInterval(()=>{
+
+    if(!bgMusic.paused){
+
+        localStorage.setItem(
+            "musicTime",
+            bgMusic.currentTime
+        );
+    }
+
+},200);
+
+/* SAVE PLAY STATE */
+
+bgMusic.addEventListener("play", ()=>{
+
+    localStorage.setItem(
+        "musicPlaying",
+        "true"
+    );
+});
+
+bgMusic.addEventListener("pause", ()=>{
+
+    localStorage.setItem(
+        "musicPlaying",
+        "false"
+    );
+});
+
+/* SAVE BEFORE PAGE CHANGE */
+
+function saveMusicState(){
+
+    localStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
+
+    localStorage.setItem(
+        "musicPlaying",
+        !bgMusic.paused
+    );
+}
+
+/* HOME */
+
+function saveMusicBeforeHome(){
+
+    saveMusicState();
+}
+
+/* NEXT */
+
+function saveMusicBeforeNext(){
+
+    saveMusicState();
+}
+
+/* NEXT PAGE */
+
+function nextPage(){
+
+    if(current < pages.length - 1){
+
+        current++;
+
+        showPage(current);
+    }
+}
+
+/* PREVIOUS PAGE */
+
+function prevPage(){
+
+    if(current > 0){
+
+        current--;
+
+        showPage(current);
+    }
+}
+
+/* CLICK CONTROLS */
+
+rightZone.addEventListener("click", nextPage);
+
+leftZone.addEventListener("click", prevPage);
+
+/* KEYBOARD */
+
+document.addEventListener("keydown", (e)=>{
+
+    if(e.key === "ArrowRight"){
+
+        nextPage();
+    }
+
+    if(e.key === "ArrowLeft"){
+
+        prevPage();
+    }
+
+});
+
+</script>
+
+</body>
+</html>

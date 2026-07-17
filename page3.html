@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>50 Reasons Why I Love You 🤎</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #dog-cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        cursor: none;
+
+        overflow-x: hidden;
+
+        font-family: "Poppins", sans-serif;
+
+        padding: 120px 20px;
+
+        position: relative;
+
+        background: #000;
+      }
+
+      /* =========================
+   VIDEO BACKGROUND
+========================= */
+
+      #bgVideo {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        z-index: -3;
+      }
+
+      /* OVERLAY */
+
+      .video-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(20, 0, 8, 0.58);
+
+        z-index: -2;
+      }
+
+      /* =========================
+   FLOATING NAMES
+========================= */
+
+      .names {
+        position: fixed;
+        inset: 0;
+
+        overflow: hidden;
+
+        pointer-events: none;
+
+        z-index: 0;
+      }
+
+      .name {
+        position: absolute;
+
+        bottom: -120px;
+
+        color: rgba(255, 230, 240, 0.45);
+
+        font-size: 2rem;
+
+        font-family: "Great Vibes", cursive;
+
+        animation: floatUp linear infinite;
+      }
+
+      .name:nth-child(1) {
+        left: 5%;
+        animation-duration: 10s;
+      }
+
+      .name:nth-child(2) {
+        left: 20%;
+        animation-duration: 12s;
+      }
+
+      .name:nth-child(3) {
+        left: 35%;
+        animation-duration: 11s;
+      }
+
+      .name:nth-child(4) {
+        left: 50%;
+        animation-duration: 13s;
+      }
+
+      .name:nth-child(5) {
+        left: 65%;
+        animation-duration: 10s;
+      }
+
+      .name:nth-child(6) {
+        left: 80%;
+        animation-duration: 12s;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) translateX(0);
+
+          opacity: 0;
+        }
+
+        10% {
+          opacity: 0.7;
+        }
+
+        50% {
+          transform: translateY(-50vh) translateX(30px);
+        }
+
+        100% {
+          transform: translateY(-120vh) translateX(-20px);
+
+          opacity: 0;
+        }
+      }
+
+      /* =========================
+   FLOATING HEARTS
+========================= */
+
+      .heart {
+        position: fixed;
+
+        color: rgba(255, 180, 200, 0.15);
+
+        font-size: 1rem;
+
+        animation: heartFloat linear infinite;
+
+        pointer-events: none;
+
+        z-index: 0;
+      }
+
+      @keyframes heartFloat {
+        0% {
+          transform: translateY(0px);
+
+          opacity: 0;
+        }
+
+        20% {
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(-120vh);
+
+          opacity: 0;
+        }
+      }
+
+      /* =========================
+   BACK BUTTON
+========================= */
+
+      .home-btn {
+        position: fixed;
+
+        top: 20px;
+        left: 20px;
+
+        z-index: 999;
+
+        padding: 12px 24px;
+
+        border-radius: 40px;
+
+        background: rgba(90, 16, 34, 0.92);
+
+        color: #fff;
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+        transition: 0.4s ease;
+      }
+
+      .home-btn:hover {
+        transform: translateY(-3px) scale(1.04);
+      }
+
+      /* =========================
+   NEXT BUTTON
+========================= */
+
+      .next-page-btn {
+        position: fixed;
+
+        top: 20px;
+        right: 20px;
+
+        z-index: 999;
+
+        padding: 12px 26px;
+
+        border-radius: 40px;
+
+        background: linear-gradient(to right, #7a1632, #b63c63);
+
+        color: #fff;
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+        transition: 0.4s ease;
+      }
+
+      .next-page-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+      }
+
+      /* =========================
+   TITLE
+========================= */
+
+      .title {
+        text-align: center;
+
+        margin-bottom: 90px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .title h1 {
+        font-size: 5rem;
+
+        color: #fff;
+
+        font-family: "Great Vibes", cursive;
+
+        margin-bottom: 20px;
+
+        text-shadow: 0 0 20px rgba(255, 180, 210, 0.3);
+      }
+
+      .title p {
+        color: #f8d7df;
+
+        font-size: 1.1rem;
+
+        line-height: 1.8;
+      }
+
+      /* =========================
+   REASONS GRID
+========================= */
+
+      .reasons {
+        width: 100%;
+        max-width: 1300px;
+
+        margin: auto;
+
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        gap: 40px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      /* =========================
+   REASON CARD
+========================= */
+
+      .reason {
+        background: rgba(255, 245, 235, 0.94);
+
+        border-radius: 25px;
+
+        padding: 35px 30px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        min-height: 220px;
+
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+
+        transition: 0.5s ease;
+
+        opacity: 0;
+
+        transform: translateY(50px);
+      }
+
+      .reason.show {
+        opacity: 1;
+
+        transform: translateY(0px);
+      }
+
+      .reason:hover {
+        transform: translateY(-10px) rotate(1deg) scale(1.02);
+      }
+
+      .reason:nth-child(odd) {
+        rotate: -1deg;
+      }
+
+      .reason:nth-child(even) {
+        rotate: 1deg;
+      }
+
+      /* NUMBER */
+
+      .number {
+        position: absolute;
+
+        top: 10px;
+        right: 20px;
+
+        font-size: 3rem;
+
+        font-weight: 700;
+
+        color: rgba(120, 20, 40, 0.12);
+      }
+
+      /* HEART */
+
+      .reason::before {
+        content: "❤";
+
+        position: absolute;
+
+        top: 18px;
+        left: 22px;
+
+        color: rgba(180, 40, 80, 0.22);
+
+        font-size: 1.2rem;
+      }
+
+      /* TEXT */
+
+      .reason p {
+        margin-top: 40px;
+
+        color: #5b4030;
+
+        line-height: 1.9;
+
+        font-size: 1rem;
+      }
+
+      /* =========================
+   ENDING
+========================= */
+
+      .ending {
+        margin-top: 140px;
+
+        text-align: center;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .ending h2 {
+        color: #fff;
+
+        font-size: 3.2rem;
+
+        font-family: "Great Vibes", cursive;
+
+        margin-bottom: 25px;
+      }
+
+      .ending p {
+        color: #f8d7df;
+
+        font-size: 1.2rem;
+
+        line-height: 2;
+      }
+
+      /* =========================
+   MOBILE
+========================= */
+
+      @media (max-width: 768px) {
+        .title h1 {
+          font-size: 3.5rem;
+        }
+
+        .title p {
+          font-size: 1rem;
+        }
+
+        .reason {
+          min-height: 180px;
+        }
+
+        .reason p {
+          font-size: 0.95rem;
+        }
+
+        .ending h2 {
+          font-size: 2.5rem;
+        }
+
+        .home-btn,
+        .next-page-btn {
+          padding: 10px 18px;
+
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="dog-cursor">
+      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
+    </div>
+
+    <!-- VIDEO BACKGROUND -->
+
+    <video autoplay muted loop playsinline id="bgVideo">
+      <source src="vd2.mp4" type="video/mp4" />
+    </video>
+
+    <!-- OVERLAY -->
+
+    <div class="video-overlay"></div>
+
+    <!-- BACK BUTTON -->
+
+    <a href="page2.html" class="home-btn" onclick="goToLastPage()"> ← Back </a>
+
+    <!-- NEXT BUTTON -->
+
+    <a href="page4.html" class="next-page-btn" onclick="goToNextPage()">
+      Next ✨
+    </a>
+
+    <!-- FLOATING NAMES -->
+
+    <div class="names">
+      <div class="name">Motii 🤎</div>
+      <div class="name">Harshii ✨</div>
+      <div class="name">Jaaniye 🌸</div>
+      <div class="name">Bae 💌</div>
+      <div class="name">Malkinn 👑</div>
+      <div class="name">Baccha 🥺</div>
+    </div>
+
+    <!-- TITLE -->
+
+    <div class="title">
+      <h1>50 Reasons Why I Love You</h1>
+
+      <p>
+        And somehow...<br />
+
+        even after writing all these reasons,<br />
+
+        I still couldn't describe you completely.
+      </p>
+    </div>
+
+    <!-- REASONS -->
+
+    <div class="reasons">
+      <div class="reason">
+        <div class="number">01</div>
+        <p>Always trying to make me happy.</p>
+      </div>
+      <div class="reason">
+        <div class="number">02</div>
+        <p>The way you stay real.</p>
+      </div>
+
+      <div class="reason">
+        <div class="number">03</div>
+        <p>Being sweeter than Rasmalai.</p>
+      </div>
+
+      <div class="reason">
+        <div class="number">04</div>
+        <p>Your face.</p>
+      </div>
+      <div class="reason">
+        <div class="number">05</div>
+        <p>Your voice.</p>
+      </div>
+      <div class="reason">
+        <div class="number">06</div>
+        <p>Your hair.</p>
+      </div>
+      <div class="reason">
+        <div class="number">07</div>
+        <p>Your smell.</p>
+      </div>
+      <div class="reason">
+        <div class="number">08</div>
+        <p>Believing in me.</p>
+      </div>
+      <div class="reason">
+        <div class="number">09</div>
+        <p>Never getting bored of me.</p>
+      </div>
+      <div class="reason">
+        <div class="number">10</div>
+        <p>Being mommy ,acting like mummy 👉👈</p>
+      </div>
+
+      <div class="reason">
+        <div class="number">11</div>
+        <p>You never give up.</p>
+      </div>
+      <div class="reason">
+        <div class="number">12</div>
+        <p>You saw my worst moods and still talked to me normally.</p>
+      </div>
+      <div class="reason">
+        <div class="number">13</div>
+        <p>You make conversations feel safe.</p>
+      </div>
+      <div class="reason">
+        <div class="number">14</div>
+        <p>You gave me memories I randomly smile about.</p>
+      </div>
+      <div class="reason">
+        <div class="number">15</div>
+        <p>You make me want to open up instead of hiding things.</p>
+      </div>
+      <div class="reason">
+        <div class="number">16</div>
+        <p>Your efforts</p>
+      </div>
+      <div class="reason">
+        <div class="number">17</div>
+        <p>Your messages change my mood more than you realize.</p>
+      </div>
+      <div class="reason">
+        <div class="number">18</div>
+        <p>You understand silence too.</p>
+      </div>
+      <div class="reason">
+        <div class="number">19</div>
+        <p>You became my comfort person.</p>
+      </div>
+      <div class="reason">
+        <div class="number">20</div>
+        <p>You make ordinary days feel special.</p>
+      </div>
+
+      <div class="reason">
+        <div class="number">21</div>
+        <p>You listen even when you're tired.</p>
+      </div>
+      <div class="reason">
+        <div class="number">22</div>
+        <p>Your laugh feels addictive.</p>
+      </div>
+      <div class="reason">
+        <div class="number">23</div>
+        <p>You make me feel wanted.</p>
+      </div>
+      <div class="reason">
+        <div class="number">24</div>
+        <p>You remember small things about me.</p>
+      </div>
+      <div class="reason">
+        <div class="number">25</div>
+        <p>You never let me feel lonely.</p>
+      </div>
+      <div class="reason">
+        <div class="number">26</div>
+        <p>You care in your own way.</p>
+      </div>
+      <div class="reason">
+        <div class="number">27</div>
+        <p>You make overthinking disappear everytime.</p>
+      </div>
+      <div class="reason">
+        <div class="number">28</div>
+        <p>You are my safe place.</p>
+      </div>
+      <div class="reason">
+        <div class="number">29</div>
+        <p>You stay even after my annoying moments.</p>
+      </div>
+      <div class="reason">
+        <div class="number">30</div>
+        <p>Your presence feels peaceful.</p>
+      </div>
+
+      <div class="reason">
+        <div class="number">31</div>
+        <p>You make me smile without trying.</p>
+      </div>
+      <div class="reason">
+        <div class="number">32</div>
+        <p>You are the best choice of my life.</p>
+      </div>
+      <div class="reason">
+        <div class="number">33</div>
+        <p>You make every conversation interesting.</p>
+      </div>
+      <div class="reason">
+        <div class="number">34</div>
+        <p>You support me quietly.</p>
+      </div>
+      <div class="reason">
+        <div class="number">35</div>
+        <p>You never make me feel judged.</p>
+      </div>
+      <div class="reason">
+        <div class="number">36</div>
+        <p>You made me your kamarpaglu 🫠🤌🏻💗</p>
+      </div>
+      <div class="reason">
+        <div class="number">37</div>
+        <p>Your childish side is adorable.</p>
+      </div>
+      <div class="reason">
+        <div class="number">38</div>
+        <p>You make me care more deeply.</p>
+      </div>
+      <div class="reason">
+        <div class="number">39</div>
+        <p>You stay in my mind all day.</p>
+      </div>
+      <div class="reason">
+        <div class="number">40</div>
+        <p>You make me feel emotionally safe.</p>
+      </div>
+
+      <div class="reason">
+        <div class="number">41</div>
+        <p>You understand me without explanations.</p>
+      </div>
+      <div class="reason">
+        <div class="number">42</div>
+        <p>You became part of my routine.</p>
+      </div>
+      <div class="reason">
+        <div class="number">43</div>
+        <p>You make late-night talks beautiful.</p>
+      </div>
+      <div class="reason">
+        <div class="number">44</div>
+        <p>You make me want to become better.</p>
+      </div>
+      <div class="reason">
+        <div class="number">45</div>
+        <p>You make me feel heard.</p>
+      </div>
+      <div class="reason">
+        <div class="number">46</div>
+        <p>You stayed when leaving was easier.</p>
+      </div>
+      <div class="reason">
+        <div class="number">47</div>
+        <p>My expectations of you were proven right.</p>
+      </div>
+      <div class="reason">
+        <div class="number">48</div>
+        <p>You became my constant person.</p>
+      </div>
+      <div class="reason">
+        <div class="number">49</div>
+        <p>You make my world softer.</p>
+      </div>
+      <div class="reason">
+        <div class="number">50</div>
+        <p>
+          50 reasons aren't enough to explain my love baccha,but I want you to
+          see the next page
+        </p>
+      </div>
+    </div>
+
+    <!-- ENDING -->
+
+    <div class="ending">
+      <h2>Still Not Enough...</h2>
+
+      <p>
+        And somehow...<br />
+
+        after writing all these reasons,<br />
+
+        I still feel like I missed the most important ones.
+      </p>
+    </div>
+
+    <!-- MUSIC -->
+
+    <audio id="bgMusic" autoplay loop>
+      <source src="song1.mp3" type="audio/mp3" />
+    </audio>
+
+    <script>
+      /* =========================
+   MUSIC CONTINUATION
+========================= */
+
+      const bgMusic = document.getElementById("bgMusic");
+
+      const dog = document.getElementById("dog-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        dog.style.left = `${x - 25}px`;
+        dog.style.top = `${y - 25}px`;
+      });
+      /* LOAD SAVED TIME */
+
+      window.addEventListener("load", () => {
+        const savedTime = localStorage.getItem("musicTime");
+
+        if (savedTime) {
+          bgMusic.currentTime = parseFloat(savedTime);
+        }
+
+        const wasPlaying = localStorage.getItem("musicPlaying");
+
+        if (wasPlaying !== "false") {
+          bgMusic.play().catch(() => {});
+        }
+      });
+
+      /* SAVE MUSIC TIME */
+
+      setInterval(() => {
+        localStorage.setItem("musicTime", bgMusic.currentTime);
+      }, 500);
+
+      /* SAVE PLAY STATE */
+
+      bgMusic.addEventListener("play", () => {
+        localStorage.setItem("musicPlaying", "true");
+      });
+
+      bgMusic.addEventListener("pause", () => {
+        localStorage.setItem("musicPlaying", "false");
+      });
+
+      /* SAVE BEFORE PAGE CHANGE */
+
+      function saveMusicState() {
+        localStorage.setItem("musicTime", bgMusic.currentTime);
+
+        localStorage.setItem("musicPlaying", !bgMusic.paused);
+      }
+
+      /* BACK BUTTON */
+
+      function goToLastPage() {
+        saveMusicState();
+
+        localStorage.setItem("openLastPage", "true");
+      }
+
+      /* NEXT BUTTON */
+
+      function goToNextPage() {
+        saveMusicState();
+      }
+
+      /* FLOATING HEARTS */
+
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤";
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.animationDuration = Math.random() * 10 + 8 + "s";
+
+        heart.style.fontSize = Math.random() * 18 + 10 + "px";
+
+        heart.style.opacity = Math.random();
+
+        document.body.appendChild(heart);
+      }
+
+      /* CARD ANIMATION */
+
+      const reasons = document.querySelectorAll(".reason");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      reasons.forEach((reason) => {
+        observer.observe(reason);
+      });
+    </script>
+  </body>
+</html>

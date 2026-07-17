@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Our Little Universe 🤎</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #dog-cursor {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        cursor: none;
+
+        overflow-x: hidden;
+
+        font-family: "Poppins", sans-serif;
+
+        background: #000;
+
+        position: relative;
+
+        padding: 120px 20px;
+      }
+
+      /* =========================
+   VIDEO BACKGROUND
+========================= */
+
+      #bgVideo {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        z-index: -3;
+      }
+
+      /* OVERLAY */
+
+      .overlay {
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(10, 0, 5, 0.62);
+
+        z-index: -2;
+      }
+
+      /* =========================
+   FLOATING HEARTS
+========================= */
+
+      .heart {
+        position: fixed;
+
+        color: rgba(255, 180, 200, 0.15);
+
+        pointer-events: none;
+
+        animation: floatHeart linear infinite;
+
+        z-index: 0;
+      }
+
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(0px);
+
+          opacity: 0;
+        }
+
+        20% {
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(-120vh);
+
+          opacity: 0;
+        }
+      }
+
+      /* =========================
+   BACK BUTTON
+========================= */
+
+      .back-btn {
+        position: fixed;
+
+        top: 20px;
+        left: 20px;
+
+        z-index: 999;
+
+        padding: 12px 24px;
+
+        border-radius: 40px;
+
+        background: rgba(90, 16, 34, 0.92);
+
+        color: #fff;
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+        transition: 0.4s ease;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* =========================
+   HEADING
+========================= */
+
+      .hero {
+        text-align: center;
+
+        margin-bottom: 120px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 5rem;
+
+        color: #fff;
+
+        font-family: "Great Vibes", cursive;
+
+        text-shadow: 0 0 25px rgba(255, 180, 220, 0.35);
+
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        color: #f5d7df;
+
+        font-size: 1.1rem;
+
+        line-height: 1.8;
+      }
+
+      /* =========================
+   MEMORY GRID
+========================= */
+
+      .memories {
+        width: 100%;
+        max-width: 1500px;
+
+        margin: auto;
+
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        gap: 60px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      /* =========================
+   POLAROID
+========================= */
+
+      .memory {
+        background: rgba(255, 248, 240, 0.96);
+
+        padding: 18px 18px 60px;
+
+        border-radius: 6px;
+
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+
+        position: relative;
+
+        transform: rotate(-2deg);
+
+        transition: 0.5s ease;
+
+        animation: floatCard 6s ease-in-out infinite alternate;
+      }
+
+      .memory:nth-child(even) {
+        transform: rotate(2deg);
+      }
+
+      .memory:hover {
+        transform: scale(1.04) rotate(0deg);
+      }
+
+      @keyframes floatCard {
+        from {
+          transform: translateY(0px);
+        }
+
+        to {
+          transform: translateY(-12px);
+        }
+      }
+
+      /* IMAGE */
+
+      .memory img {
+        width: 100%;
+
+        height: 360px;
+
+        object-fit: cover;
+
+        border-radius: 4px;
+      }
+
+      /* CAPTION */
+
+      .caption {
+        position: absolute;
+
+        bottom: 18px;
+        left: 0;
+
+        width: 100%;
+
+        text-align: center;
+
+        font-family: "Great Vibes", cursive;
+
+        font-size: 2rem;
+
+        color: #5c2b38;
+      }
+
+      /* =========================
+   ENDING
+========================= */
+
+      .ending {
+        margin-top: 180px;
+
+        text-align: center;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .ending h2 {
+        font-size: 4rem;
+
+        color: #fff;
+
+        font-family: "Great Vibes", cursive;
+
+        margin-bottom: 25px;
+
+        text-shadow: 0 0 20px rgba(255, 180, 210, 0.3);
+      }
+
+      .ending p {
+        color: #f5d7df;
+
+        font-size: 1.2rem;
+
+        line-height: 2;
+
+        max-width: 850px;
+
+        margin: auto;
+      }
+
+      /* =========================
+   SECRET BUTTON
+========================= */
+
+      .secret {
+        margin-top: 120px;
+
+        text-align: center;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .secret a {
+        color: rgba(255, 220, 230, 0.75);
+
+        text-decoration: none;
+
+        font-size: 1.2rem;
+
+        letter-spacing: 2px;
+
+        transition: 0.4s ease;
+
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      .secret a:hover {
+        color: #fff;
+
+        letter-spacing: 4px;
+      }
+
+      @keyframes glow {
+        from {
+          opacity: 0.45;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* =========================
+   MOBILE
+========================= */
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3.2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .memory img {
+          height: 280px;
+        }
+
+        .caption {
+          font-size: 1.6rem;
+        }
+
+        .ending h2 {
+          font-size: 2.7rem;
+        }
+
+        .ending p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="dog-cursor">
+      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
+    </div>
+    <!-- VIDEO -->
+
+    <video autoplay muted loop playsinline id="bgVideo">
+      <source src="vd2.mp4" type="video/mp4" />
+    </video>
+
+    <div class="overlay"></div>
+
+    <!-- BACK BUTTON -->
+
+    <a href="page3.html" class="back-btn" onclick="saveMusicState()">
+      ← Back
+    </a>
+
+    <!-- HEADING -->
+
+    <div class="hero">
+      <h1>
+        In Every Universe,<br />
+        I'd Still Find You
+      </h1>
+
+      <p>
+        Some people become memories.<br />
+        But you became a part of my soul.
+      </p>
+    </div>
+
+    <!-- MEMORIES -->
+
+    <div class="memories">
+      <div class="memory">
+        <img src="pic1.jpg" />
+        <div class="caption">From here!</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic2.jpg" />
+        <div class="caption">late night comfort</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic3.jpg" />
+        <div class="caption">My special chubby cheeks</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic4.jpg" />
+        <div class="caption">mera forever rotulu baccha</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic5.jpg" />
+        <div class="caption">maah mommy</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic6.jpg" />
+        <div class="caption">She is sooo preety</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic7.jpg" />
+        <div class="caption">Her smilee</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic8.jpg" />
+        <div class="caption">Bhai tera muh bnaana 🫠</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic9.jpg" />
+        <div class="caption">Awww cutieee</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic10.jpg" />
+        <div class="caption">Ye pic mereko guts diya</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic11.jpg" />
+        <div class="caption">Ummm ,Hottie Gurl</div>
+      </div>
+
+      <div class="memory">
+        <img src="pic12.jpg" />
+        <div class="caption">To thiss🤎</div>
+      </div>
+    </div>
+
+    <!-- ENDING -->
+
+    <div class="ending">
+      <h2>Thank You For Existing 🤎</h2>
+
+      <p>
+        Maybe someday life will become busy, maybe everything will change, maybe
+        we will grow into completely different people. But a version of me — the
+        softest and most genuine version — will always be grateful that I met
+        you.
+      </p>
+    </div>
+
+    <!-- SECRET BUTTON -->
+
+    <div class="secret">
+      <a href="page5.html" onclick="saveMusicState()">
+        ────────────────<br /><br />
+
+        One Last Thing...(Tap Here)
+      </a>
+    </div>
+
+    <!-- MUSIC -->
+
+    <audio id="bgMusic" preload="auto" loop hidden>
+      <source src="song1.mp3" type="audio/mp3" />
+    </audio>
+
+    <script>
+      /* MUSIC */
+      const dog = document.getElementById("dog-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+        dog.style.left = `${x - 25}px`;
+        dog.style.top = `${y - 25}px`;
+      });
+
+      const bgMusic = document.getElementById("bgMusic");
+
+      /* LOAD SAVED TIME */
+
+      window.addEventListener("load", async () => {
+        const savedTime = localStorage.getItem("musicTime");
+
+        const wasPlaying = localStorage.getItem("musicPlaying");
+
+        try {
+          if (savedTime) {
+            bgMusic.currentTime = parseFloat(savedTime);
+          }
+
+          if (wasPlaying !== "false") {
+            await bgMusic.play();
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+
+      /* SAVE TIME */
+
+      setInterval(() => {
+        if (!bgMusic.paused) {
+          localStorage.setItem("musicTime", bgMusic.currentTime);
+        }
+      }, 200);
+
+      /* SAVE STATE */
+
+      bgMusic.addEventListener("play", () => {
+        localStorage.setItem("musicPlaying", "true");
+      });
+
+      bgMusic.addEventListener("pause", () => {
+        localStorage.setItem("musicPlaying", "false");
+      });
+
+      /* SAVE BEFORE PAGE CHANGE */
+
+      function saveMusicState() {
+        localStorage.setItem("musicTime", bgMusic.currentTime);
+
+        localStorage.setItem("musicPlaying", !bgMusic.paused);
+      }
+
+      /* FLOATING HEARTS */
+
+      for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤";
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+        heart.style.animationDuration = Math.random() * 10 + 8 + "s";
+
+        heart.style.opacity = Math.random();
+
+        document.body.appendChild(heart);
+      }
+    </script>
+  </body>
+</html>
