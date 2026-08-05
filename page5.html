@@ -19,14 +19,6 @@
     box-sizing:border-box;
 }
 
-#dog-cursor {
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        width: 50px;
-        height: 50px;
-      }
-
 html{
     scroll-behavior:smooth;
 }
@@ -34,7 +26,6 @@ html{
 body{
 
     min-height:100vh;
-    cursor:none;
     overflow-x:hidden;
 
     background:#050203;
@@ -457,10 +448,6 @@ body{
 
 <body>
 
-    <div id="dog-cursor">
-      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
-    </div>
-
 <!-- VIDEO -->
 
 <video autoplay muted loop playsinline id="bgVideo">
@@ -627,15 +614,6 @@ THE END
 /* =========================
    MUSIC CONTINUATION
 ========================= */
-const dog = document.getElementById("dog-cursor");
-
-      document.addEventListener("mousemove", (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        dog.style.left = `${x - 25}px`;
-        dog.style.top = `${y - 25}px`;
-      });
-
 const bgMusic =
 document.getElementById("bgMusic");
 
@@ -720,15 +698,13 @@ function saveMusicState(){
 
 function openLetter(){
 
-    document
-    .getElementById("letter")
-    .classList.add("show");
+    const el = document.getElementById("letter");
+    el.classList.add("show");
 
-    document
-    .getElementById("letter")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+    // Scroll to the letter but offset slightly so it appears a bit lower on screen
+    const offset = 60; // pixels to scroll less
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: "smooth" });
 }
 
 /* =========================

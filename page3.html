@@ -20,21 +20,12 @@
         box-sizing: border-box;
       }
 
-      #dog-cursor {
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        width: 50px;
-        height: 50px;
-      }
-
       html {
         scroll-behavior: smooth;
       }
 
       body {
         min-height: 100vh;
-        cursor: none;
 
         overflow-x: hidden;
 
@@ -469,10 +460,6 @@
   </head>
 
   <body>
-    <div id="dog-cursor">
-      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
-    </div>
-
     <!-- VIDEO BACKGROUND -->
 
     <video autoplay muted loop playsinline id="bgVideo">
@@ -759,14 +746,6 @@
 
       const bgMusic = document.getElementById("bgMusic");
 
-      const dog = document.getElementById("dog-cursor");
-
-      document.addEventListener("mousemove", (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        dog.style.left = `${x - 25}px`;
-        dog.style.top = `${y - 25}px`;
-      });
       /* LOAD SAVED TIME */
 
       window.addEventListener("load", () => {
