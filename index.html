@@ -18,17 +18,8 @@
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
       }
-      #dog-cursor {
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        width: 50px;
-        height: 50px;
-      }
-
       body {
         height: 100vh;
-        cursor: none;
 
         overflow: hidden;
 
@@ -154,7 +145,7 @@
       }
 
       .photo2 {
-        top: 55%;
+        top: 75%;
         left: 15%;
         animation-name: zigzag2;
       }
@@ -267,6 +258,7 @@
         width: 90%;
         max-width: 700px;
 
+        margin: 0 auto;
         padding: 50px 40px;
 
         text-align: center;
@@ -275,7 +267,7 @@
 
         background: rgba(0, 0, 0, 0.35);
 
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(7px);
 
         border: 1px solid rgba(255, 255, 255, 0.25);
 
@@ -363,6 +355,10 @@
         font-weight: 600;
 
         transition: 0.4s;
+
+        position: relative;
+
+        z-index: 10;
       }
 
       .btn:hover {
@@ -432,10 +428,6 @@
     </audio>
 
     <!-- MAIN CONTENT -->
-    <div id="dog-cursor">
-      <img src="cute-dog.png" alt="cutedog" width="50" height="50" />
-    </div>
-
     <div class="container">
       <h1>Happy Birthday Janiyee💖</h1>
 
@@ -461,34 +453,42 @@
 
     <script>
       /* MANY HEARTS */
-      const dog = document.getElementById("dog-cursor");
+      // Create a limited number of hearts over time and remove them after
+      // their animation ends to avoid cluttering the page.
+      const MAX_HEARTS = 40;
+      let heartsCreated = 0;
 
-      document.addEventListener("mousemove", (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        dog.style.left = `${x - 25}px`;
-        dog.style.top = `${y - 25}px`;
-      });
+      function createHeart() {
+        if (heartsCreated >= MAX_HEARTS) return;
 
-      for (let i = 0; i < 250; i++) {
-        let heart = document.createElement("div");
-
+        const heart = document.createElement("div");
         heart.classList.add("heart");
-
         heart.innerHTML = "❤";
 
-        heart.style.left = Math.random() * 100 + "vw";
+        // Spread across the width and vary size/duration
+        heart.style.left = Math.random() * 90 + "vw";
+        heart.style.fontSize = Math.random() * 30 + 12 + "px";
+        heart.style.animationDuration = Math.random() * 8 + 4 + "s";
+        heart.style.animationDelay = Math.random() * 3 + "s";
+        heart.style.opacity = 0.8;
 
-        heart.style.fontSize = Math.random() * 45 + 10 + "px";
-
-        heart.style.animationDuration = Math.random() * 10 + 3 + "s";
-
-        heart.style.animationDelay = Math.random() * 15 + "s";
-
-        heart.style.opacity = Math.random();
+        // Remove element after animation to keep DOM light
+        heart.addEventListener("animationend", () => {
+          if (heart.parentNode) heart.parentNode.removeChild(heart);
+        });
 
         document.body.appendChild(heart);
+        heartsCreated++;
       }
+
+      // Create hearts at intervals rather than all at once
+      const heartInterval = setInterval(() => {
+        if (heartsCreated >= MAX_HEARTS) {
+          clearInterval(heartInterval);
+          return;
+        }
+        createHeart();
+      }, 300);
 
       /* MUSIC */
 
